@@ -728,6 +728,13 @@ void Config::handleOption(const QString &option, const QVariant &value)
     if (option == "webdriver-selenium-grid-hub") {
         setWebdriverSeleniumGridHub(value.toString());
     }
+    if (option == "bind-ip") {
+	      char *bind_ip = NULL;
+	      QByteArray ba = value.toString().toLatin1();    
+	      bind_ip = ba.data();
+	      printf("yhlmodifytest qt-bind-ip:%s\n", bind_ip);
+	      setenv("qt_bind_ip", bind_ip, 1);
+    }
 }
 
 void Config::handleParam(const QString& param, const QVariant &value)
